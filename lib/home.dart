@@ -6,6 +6,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool _loading = true;
+  final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,15 +47,43 @@ class _HomeState extends State<Home> {
               Container(
                 padding: EdgeInsets.all(30),
                 decoration: BoxDecoration(
-                    color: Colors.purpleAccent,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
+                  color: Colors.purpleAccent,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
                         color: Colors.black.withOpacity(0.5),
                         spreadRadius: 5,
-                        blurRadius: 7
-                      )
-                    ]),
+                        blurRadius: 7)
+                  ],
+                ),
+              ),
+              Container(
+                child: Center(
+                  child: _loading
+                      ? Container(
+                          width: 300,
+                          child: Column(
+                            children: [
+                              TextField(
+                                controller: myController,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                decoration: InputDecoration(
+                                  labelStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 21,
+                                  ),
+                                  labelText: "Enter a search term"
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container(),
+                ),
               )
             ],
           ),
